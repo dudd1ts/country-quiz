@@ -1,47 +1,44 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="app-container">
+    <h1 class="app-header">Country quiz</h1>
+    <main class="app-main">
+      Lorem Ipsum
+    </main>
+  </div>
+  <footer class="app-footer">
+    created by <a class="app-footer__link" href="https://github.com/dudd1ts" target="_blank">Sergei Kondrashev</a> - devChallenges.io
+  </footer>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script setup>
+</script>
+
+<style lang="scss" scoped>
+.app-container {
+  margin: auto;
+  width: 464px;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.app-header {
+  text-transform: uppercase;
+  color: #ffffff;
 }
+.app-main {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 24px;
+}
+.app-footer {
+  margin: 0 auto;
+  color: #ffffff;
+  font: 500 14px/17px var(--montserrat);
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+  &__link {
+    color: #ffffff;
+    font-weight: 700;
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 </style>

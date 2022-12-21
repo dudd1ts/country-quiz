@@ -1,0 +1,44 @@
+@import "./fonts.scss";
+
+:root {
+  --poppins: "Poppins", sans-serif;
+  --montserrat: "Montserrat", sans-serif;
+  --orange: #f9a826;
+  --green: #60bf88;
+  --red: #ea8282;
+  --violet: #5256a1;
+  --violet-light: #5c61c3;
+  --violet-dark: #2f527b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--poppins);
+  font-size: 16px;
+  font-weight: 500;
+  background-color: var(--violet);
+}
+
+b {
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 29px;
+  display: flex;
+  flex-direction: column;
+}
