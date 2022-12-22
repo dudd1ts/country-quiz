@@ -8,6 +8,7 @@ module.exports = {
   rules: {
     'comma-dangle': ['off', 'never'],
     'vue/multi-word-component-names': 'off',
+    'vue/comment-directive': 'off'
   },
   parserOptions: {
     ecmaVersion: 'latest'
