@@ -2,7 +2,7 @@
   <div class="first-screen">
     <img src="/img/adventure.svg" alt="Winners" width="162" height="116">
     <h2 class="first-screen__title">Welcome to country quiz</h2>
-    <AppButton></AppButton>
+    <AppButton>Start</AppButton>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ import AppButton from '@/components/AppButton.vue';
 
     &__title {
       font: 700 24px/36px var(--poppins);
-      color: var(--violet-dark);
+      color: var(--violet);
     }
   }
 </style>

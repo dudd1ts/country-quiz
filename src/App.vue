@@ -17,7 +17,6 @@ import { computed } from 'vue';
 
 const gameStore = useGameStore();
 
-
 const currentScreen = computed(() => {
   switch (gameStore.screen) {
     case 'QUESTION_ONE':
@@ -36,16 +35,20 @@ const currentScreen = computed(() => {
   width: 464px;
 }
 .app-title {
+  margin: 40px 0 10px;
+  font: 700 36px/54px var(--poppins);
   text-transform: uppercase;
   color: #ffffff;
+
 }
 .app-main {
   width: 100%;
   //min-height: 515px;
-  padding: 68px 32px;
+  padding: 68px 32px 32px;
   margin-bottom: 29px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 24px;
   display: flex;
+  position: relative;
 }
 </style>

@@ -2,6 +2,6 @@ import { defineStore } from 'pinia';
 
 export const useGameStore = defineStore('gameStore', {
   state: () => ({
-    screen: 'WELCOME'
+    screen: 'QUESTION_ONE' // QUESTION_ONE | WELCOME
   })
 })
