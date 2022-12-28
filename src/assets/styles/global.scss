@@ -1,8 +1,8 @@
-@import "./fonts.scss";
+@import './fonts.scss';
 
 :root {
-  --poppins: "Poppins", sans-serif;
-  --montserrat: "Montserrat", sans-serif;
+  --poppins: 'Poppins', sans-serif;
+  --montserrat: 'Montserrat', sans-serif;
   --orange: #f9a826;
   --green: #60bf88;
   --red: #ea8282;
@@ -24,7 +24,7 @@ body {
   font-family: var(--poppins);
   font-size: 16px;
   font-weight: 500;
-  background: var(--violet) url('/img/background.png') center no-repeat;
+  background: var(--violet-light) url('/img/background.png') center no-repeat;
   background-size: cover;
 
 }

@@ -9,16 +9,16 @@
 </template>
 
 <script setup>
-import AppFooter from "@/components/AppFooter.vue";
-import FirstScreen from "@/components/FirstScreen.vue";
-import QuestionOneScreen from "@/components/QuestionOneScreen.vue";
-import { useGameStore } from "./stores/GameStore";
+import AppFooter from '@/components/AppFooter.vue';
+import FirstScreen from '@/components/FirstScreen.vue';
+import QuestionOneScreen from '@/components/QuestionOneScreen.vue';
+import { useGameStore } from './stores/GameStore';
 import { computed } from 'vue';
 
 const gameStore = useGameStore();
 
 const currentScreen = computed(() => {
-  switch (gameStore.screen) {
+  switch (gameStore.activeScreen) {
     case 'QUESTION_ONE':
       return QuestionOneScreen;
     case 'WELCOME':
@@ -26,7 +26,6 @@ const currentScreen = computed(() => {
       return FirstScreen;
   }
 });
-
 </script>
 
 <style lang="scss" scoped>
@@ -43,7 +42,6 @@ const currentScreen = computed(() => {
 }
 .app-main {
   width: 100%;
-  //min-height: 515px;
   padding: 68px 32px 32px;
   margin-bottom: 29px;
   background-color: #ffffff;

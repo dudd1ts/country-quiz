@@ -2,12 +2,20 @@
   <div class="first-screen">
     <img src="/img/adventure.svg" alt="Winners" width="162" height="116">
     <h2 class="first-screen__title">Welcome to country quiz</h2>
-    <AppButton>Start</AppButton>
+    <AppButton @click="gameStore.setActiveScreen('QUESTION_ONE')">Start</AppButton>
   </div>
 </template>
 
 <script setup>
 import AppButton from '@/components/AppButton.vue';
+import { useGameStore } from '@/stores/GameStore';
+
+const gameStore = useGameStore();
+
+const loadCountries = () => {
+  gameStore.getCountries();
+};
+loadCountries();
 </script>
 
 <style lang="scss" scoped>

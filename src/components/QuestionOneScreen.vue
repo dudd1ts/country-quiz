@@ -1,12 +1,11 @@
 <template>
   <div class="question-screen">
     <img class="question-screen__img" src="/img/adventure.svg" alt="Winners" width="162" height="116">
-    <h2 class="question-screen__title">Kuala Lumpur is the capital of</h2>
+    <h2 class="question-screen__title">{{ questionCountries[0].capital[0] }} is the capital of</h2>
     <ul class="answers">
-      <li class="answers__item"><button class="answers__btn answers__btn--wrong" type="button">Vietnam</button></li>
-      <li class="answers__item"><button class="answers__btn answers__btn--success" type="button">Vietnam</button></li>
-      <li class="answers__item"><button class="answers__btn answers__btn--default" type="button">Vietnam</button></li>
-      <li class="answers__item"><button class="answers__btn answers__btn--default" type="button">Vietnam</button></li>
+      <li class="answers__item" v-for="country in questionCountries" :key="country.name">
+        <button class="answers__btn answers__btn--default" type="button">{{ country.name }}</button>
+      </li>
     </ul>
     <AppButton class="question-screen__next-btn">Next</AppButton>
   </div>
@@ -14,6 +13,24 @@
 
 <script setup>
 import AppButton from '@/components/AppButton.vue';
+import { useGameStore } from '@/stores/GameStore';
+
+const gameStore = useGameStore();
+const getRandomCountries = () => {
+  const randomIndexes = new Set();
+  while (randomIndexes.size < 4) {
+    const newIdx = Math.floor(Math.random() * gameStore.countries.length);
+    randomIndexes.add(newIdx);
+  }
+
+  const result = [];
+  for (let idx of randomIndexes.values()) {
+    result.push(gameStore.countries[idx]);
+  }
+
+  return result;
+};
+const questionCountries = getRandomCountries();
 </script>
 
 <style lang="scss" scoped>
