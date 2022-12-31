@@ -5,7 +5,7 @@ const countriesInLocalStorage = localStorage.getItem("countries");
 
 export const useGameStore = defineStore('gameStore', {
   state: () => ({
-    activeScreen: 'WELCOME', // QUESTION_ONE | WELCOME
+    activeScreen: 'WELCOME', // QUESTION_ONE | WELCOME | RESULTS
     countries: [],
     rightAnswers: 0
   }),
@@ -30,6 +30,9 @@ export const useGameStore = defineStore('gameStore', {
     },
     setActiveScreen(id) {
       this.activeScreen = id;
+    },
+    setRightAnswers(value) {
+      this.rightAnswers = value;
     }
   },
 })

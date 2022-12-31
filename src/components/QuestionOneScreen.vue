@@ -1,36 +1,84 @@
 <template>
   <div class="question-screen">
-    <img class="question-screen__img" src="/img/adventure.svg" alt="Winners" width="162" height="116">
-    <h2 class="question-screen__title">{{ questionCountries[0].capital[0] }} is the capital of</h2>
+    <img class="question-screen__img" src="/img/adventure.svg" alt="A man and the globe" width="162" height="116">
+    <h2 class="question-screen__title">{{ questionCountries[rightIdx].capital[0] }} is the capital of {{ gameStore.rightAnswers }}</h2>
     <ul class="answers">
       <li class="answers__item" v-for="country in questionCountries" :key="country.name">
-        <button class="answers__btn answers__btn--default" type="button">{{ country.name }}</button>
+        <button :class="[
+                'answers__btn',
+                {
+                  'answers__btn--default': !isAnswered || (isAnswered && !country.isRight && !country.isClicked),
+                  'answers__btn--success': isAnswered && country.isRight,
+                  'answers__btn--wrong': isAnswered && !country.isRight && country.isClicked,
+                  'answers__btn--disabled': isAnswered
+                },
+              ]" type="button" @click="onAnswerClick(country)">{{ country.name }} {{ country.isRight }}</button>
       </li>
     </ul>
-    <AppButton class="question-screen__next-btn">Next</AppButton>
+    <AppButton class="question-screen__next-btn" v-if="isAnswered" @click="onNextClick">Next</AppButton>
   </div>
 </template>
 
 <script setup>
 import AppButton from '@/components/AppButton.vue';
+import { ref } from "vue";
 import { useGameStore } from '@/stores/GameStore';
 
 const gameStore = useGameStore();
+const isAnswered = ref(false);
+const questionCondition = ref('WAITING'); // WAITING | WRONG_ANSWER | RIGHT_ANSWER
+const questionCountries = ref([]);
+const rightIdx = ref(0);
+
+const getRandomNumber = (max) => Math.floor(Math.random() * max);
+
 const getRandomCountries = () => {
   const randomIndexes = new Set();
   while (randomIndexes.size < 4) {
-    const newIdx = Math.floor(Math.random() * gameStore.countries.length);
+    const newIdx = getRandomNumber(gameStore.countries.length);
     randomIndexes.add(newIdx);
   }
 
   const result = [];
   for (let idx of randomIndexes.values()) {
-    result.push(gameStore.countries[idx]);
+    const newLength = result.push(gameStore.countries[idx]);
+    result[newLength - 1].isClicked = false;
+    result[newLength - 1].isRight = false;
   }
 
   return result;
 };
-const questionCountries = getRandomCountries();
+
+const initQuestion = () => {
+  questionCountries.value = getRandomCountries();
+  rightIdx.value = getRandomNumber(questionCountries.value.length);
+  questionCountries.value[rightIdx.value].isRight = true;
+};
+initQuestion();
+
+const onAnswerClick = (country) => {
+  country.isClicked = true;
+  isAnswered.value = true;
+  if (country.isRight) {
+    questionCondition.value = 'RIGHT_ANSWER';
+    gameStore.setRightAnswers(gameStore.rightAnswers + 1);
+  } else {
+    questionCondition.value = 'WRONG_ANSWER';
+  }
+}
+
+const onNextClick = () => {
+  switch (questionCondition.value) {
+    case 'RIGHT_ANSWER':
+      questionCondition.value = 'WAITING';
+      isAnswered.value = false;
+      initQuestion();
+      break;
+    case 'WRONG_ANSWER':
+      gameStore.setActiveScreen('RESULTS');
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -152,6 +200,10 @@ const questionCountries = getRandomCountries();
         border-radius: 100%;
         background: url('/img/tick.svg') no-repeat center / 14px;
       }
+    }
+
+    &--disabled {
+      pointer-events: none;
     }
   }
 }
