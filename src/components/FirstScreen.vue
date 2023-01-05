@@ -25,9 +25,14 @@ loadCountries();
     align-items: center;
     margin: auto;
 
+    img {
+      margin-bottom: 30px;
+    }
+
     &__title {
       font: 700 24px/36px var(--poppins);
       color: var(--violet);
+      margin: 0 0 50px;
     }
   }
 </style>

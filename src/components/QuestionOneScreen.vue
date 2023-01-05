@@ -1,7 +1,13 @@
 <template>
   <div class="question-screen">
     <img class="question-screen__img" src="/img/adventure.svg" alt="A man and the globe" width="162" height="116">
-    <h2 class="question-screen__title">{{ questionCountries[rightIdx].capital[0] }} is the capital of {{ gameStore.rightAnswers }}</h2>
+    <template v-if="questionType === 'FLAG'">
+      <img class="question-screen__flag" :src="questionCountries[rightIdx].flag" alt="Country flag" width="84">
+      <h2 class="question-screen__title">Which country does this flag belong to?</h2>
+    </template>
+    <template v-else>
+      <h2 class="question-screen__title">{{ questionCountries[rightIdx].capital[0] }} is the capital of {{ gameStore.rightAnswers }}</h2>
+    </template>
     <ul class="answers">
       <li class="answers__item" v-for="country in questionCountries" :key="country.name">
         <button :class="[
@@ -12,7 +18,7 @@
                   'answers__btn--wrong': isAnswered && !country.isRight && country.isClicked,
                   'answers__btn--disabled': isAnswered
                 },
-              ]" type="button" @click="onAnswerClick(country)">{{ country.name }} {{ country.isRight }}</button>
+              ]" type="button" @click="onAnswerClick(country)">{{ country.name }}</button>
       </li>
     </ul>
     <AppButton class="question-screen__next-btn" v-if="isAnswered" @click="onNextClick">Next</AppButton>
@@ -29,7 +35,10 @@ const isAnswered = ref(false);
 const questionCondition = ref('WAITING'); // WAITING | WRONG_ANSWER | RIGHT_ANSWER
 const questionCountries = ref([]);
 const rightIdx = ref(0);
+const questionType = ref('CAPITAL'); // CAPITAL | FLAG
 
+
+const getNewQuestionType = () => (Math.random() < 0.5) ? 'CAPITAL' : 'FLAG';
 const getRandomNumber = (max) => Math.floor(Math.random() * max);
 
 const getRandomCountries = () => {
@@ -53,8 +62,8 @@ const initQuestion = () => {
   questionCountries.value = getRandomCountries();
   rightIdx.value = getRandomNumber(questionCountries.value.length);
   questionCountries.value[rightIdx.value].isRight = true;
+  questionType.value = getNewQuestionType();
 };
-initQuestion();
 
 const onAnswerClick = (country) => {
   country.isClicked = true;
@@ -65,7 +74,9 @@ const onAnswerClick = (country) => {
   } else {
     questionCondition.value = 'WRONG_ANSWER';
   }
-}
+};
+
+initQuestion();
 
 const onNextClick = () => {
   switch (questionCondition.value) {
@@ -77,7 +88,7 @@ const onNextClick = () => {
     case 'WRONG_ANSWER':
       gameStore.setActiveScreen('RESULTS');
   }
-}
+};
 
 </script>
 
@@ -89,6 +100,12 @@ const onNextClick = () => {
   margin: auto;
   padding-top: 18px;
   flex-grow: 1;
+
+  &__flag {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-bottom: 28px;
+  }
 
   &__title {
     margin: 0 0 32px;
