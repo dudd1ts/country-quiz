@@ -12,6 +12,7 @@
 import AppFooter from '@/components/AppFooter.vue';
 import FirstScreen from '@/components/FirstScreen.vue';
 import QuestionOneScreen from '@/components/QuestionOneScreen.vue';
+import ResultsScreen from '@/components/ResultsScreen.vue';
 import { useGameStore } from './stores/GameStore';
 import { computed } from 'vue';
 
@@ -21,6 +22,8 @@ const currentScreen = computed(() => {
   switch (gameStore.activeScreen) {
     case 'QUESTION_ONE':
       return QuestionOneScreen;
+    case 'RESULTS':
+      return ResultsScreen;
     case 'WELCOME':
     default:
       return FirstScreen;
@@ -42,7 +45,7 @@ const currentScreen = computed(() => {
 }
 .app-main {
   width: 100%;
-  padding: 68px 32px 32px;
+  padding: 50px 32px 32px;
   margin-bottom: 29px;
   background-color: #ffffff;
   border-radius: 24px;

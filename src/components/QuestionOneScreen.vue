@@ -87,6 +87,7 @@ const onNextClick = () => {
   flex-direction: column;
   align-items: flex-start;
   margin: auto;
+  padding-top: 18px;
   flex-grow: 1;
 
   &__title {

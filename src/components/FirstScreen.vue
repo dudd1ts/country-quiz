@@ -1,6 +1,6 @@
 <template>
   <div class="first-screen">
-    <img src="/img/adventure.svg" alt="Winners" width="162" height="116">
+    <img src="/img/adventure.svg" alt="A man and the globe" width="162" height="116">
     <h2 class="first-screen__title">Welcome to country quiz</h2>
     <AppButton @click="gameStore.setActiveScreen('QUESTION_ONE')">Start</AppButton>
   </div>

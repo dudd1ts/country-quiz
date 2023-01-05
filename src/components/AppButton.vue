@@ -21,14 +21,14 @@ defineProps({
 .btn {
   font: 700 18px/27px var(--poppins);
   transition: all .2s ease;
+  cursor: pointer;
+  border-radius: 12px;
 
   &--default {
     background-color: var(--orange);
     color: #ffffff;
     border: none;
     padding: 14px 37px;
-    border-radius: 12px;
-    cursor: pointer;
     box-shadow: 0 2px 4px rgba(252, 168, 47, 0.4);
 
     &:hover {
@@ -40,6 +40,23 @@ defineProps({
     &:active {
       box-shadow: 0 2px 4px rgba(252, 168, 47, 0.4);
       background-color: #e59b22;
+    }
+  }
+
+  &--bordered {
+    background: none;
+    border: 2px solid var(--violet-dark);
+    padding: 15px 59px;
+    color: var(--violet-dark);
+
+    &:hover {
+      background-color: var(--violet-dark);
+      color: #ffffff;
+      transition: none;
+    }
+
+    &:active {
+      background-color: #1d354b;
     }
   }
 }
