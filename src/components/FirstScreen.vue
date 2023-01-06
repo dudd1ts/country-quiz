@@ -35,4 +35,10 @@ loadCountries();
       margin: 0 0 50px;
     }
   }
+
+  @media (max-width: 520px) {
+    .first-screen__title {
+      font-size: 20px;
+    }
+  }
 </style>

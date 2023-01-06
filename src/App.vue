@@ -52,4 +52,13 @@ const currentScreen = computed(() => {
   display: flex;
   position: relative;
 }
+
+@media (max-width: 520px) {
+  .app-container {
+    width: auto;
+  }
+  .app-title {
+    font-size: 24px;
+  }
+}
 </style>

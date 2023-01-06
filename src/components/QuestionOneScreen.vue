@@ -6,7 +6,7 @@
       <h2 class="question-screen__title">Which country does this flag belong to?</h2>
     </template>
     <template v-else>
-      <h2 class="question-screen__title">{{ questionCountries[rightIdx].capital[0] }} is the capital of {{ gameStore.rightAnswers }}</h2>
+      <h2 class="question-screen__title">{{ questionCountries[rightIdx].capital[0] }} is the capital of</h2>
     </template>
     <ul class="answers">
       <li class="answers__item" v-for="country in questionCountries" :key="country.name">

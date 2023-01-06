@@ -48,4 +48,12 @@ const resetGame = () => {
     font-size: 36px;
   }
 }
+
+@media (max-width: 520px) {
+  .results-screen {
+    img {
+      margin-bottom: 35px;
+    }
+  }
+}
 </style>
